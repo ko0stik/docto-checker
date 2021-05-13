@@ -48,9 +48,9 @@ const launchSearch = (targetIDs: string[]) => {
                     console.log(res);
                     client.sendMessage(convId, "A center seems to have availabilities. Go check https://www.doctolib.fr" + res["search_result"]["url"]);
                 } else if (!res["search_result"]) { // meaning we need to refresh IDs
-                    if (index == 0) {
-                        targetIDs = await refresh();
-                    }
+                    const mess = "need to update targetIDs, meaning creneaux might be incoming";
+                    client.sendMessage(convId, mess);
+                    console.log(mess);
                 } else {
                     console.log("no availability for center " + res["search_result"]["id"]);
                 }
@@ -63,5 +63,8 @@ const launchSearch = (targetIDs: string[]) => {
 
 init().then(targetIDs => {
     launchSearch(targetIDs);
-    setInterval(() => launchSearch(targetIDs), timer * 60 * 1000);
+    setInterval(async () => {
+        targetIDs = await refresh();
+        launchSearch(targetIDs)
+    }, timer * 60 * 1000);
 });
