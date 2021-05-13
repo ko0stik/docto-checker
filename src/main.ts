@@ -27,6 +27,10 @@ const init = async (): Promise<string[]> => {
     return ret;
 };
 
+const refresh = async (): Promise<string[]> => {
+    return init();
+}
+
 const client = new TelegramClient({
     accessToken: telegramToken
 });
@@ -34,11 +38,8 @@ const client = new TelegramClient({
 
 const launchSearch = (targetIDs: string[]) => {
     console.log("\n-----------------\n");
-    if (count > 0 && count % 5 == 0) {
-        client.sendMessage(convId, "Still scanning, now at time number: " + count);
-    }
     count++;
-    targetIDs.forEach((targetID) => {
+    targetIDs.forEach((targetID, index) => {
         const targetURL = baseURL.replace("CENTER_ID", targetID);
         fetch(targetURL, config.get("fetchConfig")).then(async response => {
             const res = await response.json();
@@ -46,6 +47,10 @@ const launchSearch = (targetIDs: string[]) => {
                 if (res["availabilities"] > 0) {
                     console.log(res);
                     client.sendMessage(convId, "A center seems to have availabilities. Go check https://www.doctolib.fr" + res["search_result"]["url"]);
+                } else if (!res["search_result"]) { // meaning we need to refresh IDs
+                    if (index == 0) {
+                        targetIDs = await refresh();
+                    }
                 } else {
                     console.log("no availability for center " + res["search_result"]["id"]);
                 }
