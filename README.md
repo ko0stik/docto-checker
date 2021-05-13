@@ -31,6 +31,12 @@ vim config/default.json
 }
 ```
 
+- `timer` is the interval used between queries
+- `telegramConvID` after you created a group and invited your bot, you can invite @getidsbot to the conv to get the convID. Here is a [stack overflow post explaining this](https://stackoverflow.com/questions/32423837/telegram-bot-how-to-get-a-group-chat-id)
+- `fetchConfig` is the json dump you get when you copy from network the `node-fetch` of a query. It will mimick your web session
+-  `doctolibSearchBaseURL` is the url your would normally refresh in order to get the slots
+- `telegramBotToken` is the token you'll get once you have created your own bot by talking to their. You'll need to invite your bot in the group where you plan to get the udpates.
+
 ## Launch
 
 ```shell
