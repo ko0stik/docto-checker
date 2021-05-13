@@ -43,6 +43,6 @@ vim config/default.json
 npm start
 ```
 
-## Troubleshooting
+## Troubleshooting (outdated, normally)
 
 It seems center IDs are refreshed every once in a while (every hour or so), causing the stored IDs to be flushed. To fix this, you need to relaunch the script in order to get new center ids from doctolib. An automated refresher will come soon.
