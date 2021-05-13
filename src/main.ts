@@ -14,8 +14,12 @@ const timer = config.get("timer") as number; // in minutes
 var count = 0;
 
 const init = async (): Promise<string[]> => {
-    var ret = [];
     client.sendMessage(convId, "Launching **Scrapping**\nI'll tell you right away if something comes up.");
+    return refresh();
+};
+
+const refresh = async (): Promise<string[]> => {
+    var ret = [];
     const { data } = await axios.get(searchURL);
     const $ = cheerio.load(data);
     const selector = ".dl-search-result > div.dl-search-result-calendar > div";
@@ -25,10 +29,6 @@ const init = async (): Promise<string[]> => {
         ret.push(j["searchResultId"]);
     });
     return ret;
-};
-
-const refresh = async (): Promise<string[]> => {
-    return init();
 }
 
 const client = new TelegramClient({
