@@ -1,0 +1,8 @@
+{
+    "telegramBotToken": "",
+    "testMode": false,
+    "timer": 2,
+    "telegramConvID": "",
+    "doctolibSearchBaseURL": "",
+    "fetchConfig": {}
+}
