@@ -40,7 +40,7 @@ vim config/default.json
 ## Launch
 
 ```shell
-tsc ; node ./build/main.js
+npm start
 ```
 
 ## Troubleshooting
