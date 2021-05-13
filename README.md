@@ -15,7 +15,7 @@ This script has no pretention and should be considered as such.
 npm i
 ```
 
-## Configuration [TO IMPLEMENT]
+## Configuration
 
 ```
 vim config/default.json
@@ -29,6 +29,12 @@ vim config/default.json
     "doctolibSearchBaseURL": "",
     "fetchConfig": ""
 }
+```
+
+## Launch
+
+```shell
+tsc ; node ./build/main.js
 ```
 
 ## Troubleshooting
