@@ -52,6 +52,7 @@ const launchSearch = (targetIDs: string[]) => {
             const res = await response.json();
             try {
                 if (res["availabilities"].length > 0) {
+                    console.log(res);
                     mess = ["A center seems to have availabilities. Go check https://www.doctolib.fr", res["search_result"]["url"], ".\n"].join("");
                 } else if (!res["search_result"]) { // meaning we need to refresh IDs
                     mess = "need to update targetIDs, meaning creneaux might be incoming\n";
