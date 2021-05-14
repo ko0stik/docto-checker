@@ -32,7 +32,7 @@ const init = async (): Promise<string[]> => {
 };
 
 const sendTelegramNotification = (msg: string) => {
-    if (!contextIsTest) {
+    if (!contextIsTest()) {
         client.sendMessage(convId, msg);
     } else {
         console.log(msg);
