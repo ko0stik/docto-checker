@@ -93,13 +93,13 @@ const launchSearch = (targetIDs: string[]) => {
             try {
                 if (res.availabilities && res.availabilities.length > 0) {
                     const center = res.search_result.name_with_title;
-                    const url = `https://www.doctolib.fr/${res.search_result.url}`;
+                    const url = `https://www.doctolib.fr${res.search_result.url}?ref_visit_motive_ids[]=6970&ref_visit_motive_ids[]=7005`;
                     var processedRes = processAvailabilities(res.availabilities);
                     if (processedRes.length > 0) {
                         sendTelegramNotification([
                             `Slots available for ${center}`,
                             processedRes.join(", "),
-                            `please visit: ${url}`
+                            `please visit: ${url} or if not working ${searchURL}`
                         ].join("\n"));
                     }
                 } else if (!res["search_result"]) { // meaning we need to refresh IDs
